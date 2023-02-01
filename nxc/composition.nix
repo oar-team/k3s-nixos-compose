@@ -2,9 +2,10 @@
   roles =
     let
       tokenFile = pkgs.writeText "token" "p@s$w0rd";
+      
     in
     {
-    server = { pkgs, ... }: {
+      server = { pkgs, ... }: {
         environment.systemPackages = with pkgs; [ gzip jq kubectl ];
         # k3s uses enough resources the default vm fails.
         
@@ -13,7 +14,8 @@
           enable = true;
           role = "server";
           package = pkgs.k3s;
-        };
+          extraFlags =  "--bind-address 192.168.1.2 --node-external-ip 192.168.1.2";
+        };        
     };
 
     agent = { pkgs, ... }: {
