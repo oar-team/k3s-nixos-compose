@@ -1,0 +1,4 @@
+[project]
+
+#[options]
+#nix-flags = "--impure --override-input kapack path:/home/auguste/dev/nur-kapack/regale"
